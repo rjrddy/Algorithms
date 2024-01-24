@@ -9,16 +9,44 @@ class BST:
     def __init__(self):
         self.root = None
 
-    def add(self, root, val):
-        if root is None:
-            root = Node(val)
-        elif val < root:
-            if root.left is None:
-                root.left = Node(val)
+    def add(self, val):
+        if self.root is None:
+            return Node(val)
+        elif val < self.root.val:
+            if self.root.left is None:
+                self.root.left = Node(val)
             else:
-                root.left = self.add(root.left, val)
-        elif val > root:
-            if root.right is None:
-                root.right = Node(val)
+                self.root.left = self.add(self.root.left, val)
+        elif val > self.root.val:
+            if self.root.right is None:
+                self.root.right = Node(val)
             else:
-                root.right = self.add(root.right, val)
+                self.root.right = self.add(self.root.right, val)
+        return self.root;
+    
+    def inorder(self):
+        
+        arr = []
+        
+        if self.root is None:
+            arr.extend(self.inorder(self.root.left))
+            arr.append(self.root)
+            arr.extend(self.inorder(self.root.right))
+        
+        return arr
+            
+                
+def main():
+    n, k = map(int, input().split())
+    
+    for i in range(n):
+        
+        vals = []
+        vals = input().split()
+        bst = BST();
+       
+        for val in vals:
+            bst.add(val)
+    
+    
+        
