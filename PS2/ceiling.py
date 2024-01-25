@@ -9,44 +9,49 @@ class BST:
     def __init__(self):
         self.root = None
 
-    def add(self, val):
-        if self.root is None:
-            return Node(val)
-        elif val < self.root.val:
-            if self.root.left is None:
-                self.root.left = Node(val)
-            else:
-                self.root.left = self.add(self.root.left, val)
-        elif val > self.root.val:
-            if self.root.right is None:
-                self.root.right = Node(val)
-            else:
-                self.root.right = self.add(self.root.right, val)
-        return self.root;
-    
-    def inorder(self):
-        
-        arr = []
-        
-        if self.root is None:
-            arr.extend(self.inorder(self.root.left))
-            arr.append(self.root)
-            arr.extend(self.inorder(self.root.right))
-        
-        return arr
-            
-                
+
+def add(root, val):
+    if root is None:
+        return Node(val)
+    elif val < root.val:
+        root.left = add(root.left, val)
+    elif val > root.val:
+        root.right = add(root.right, val)
+    return root
+
+
+def inorder_traversal(root):
+
+    result = ''
+    if root is not None:
+        left_traversal = inorder_traversal(root.left)
+        result = left_traversal + '1'
+        right_traversal = inorder_traversal(root.right)
+        result += right_traversal
+    return result
+
+
 def main():
     n, k = map(int, input().split())
-    
+
+    tree_set = set()
+
     for i in range(n):
-        
-        vals = []
-        vals = input().split()
-        bst = BST();
-       
+        vals = list(map(int, input().split()))
+        bst = BST()
+
         for val in vals:
-            bst.add(val)
-    
-    
-        
+            bst.root = add(bst.root, val)
+
+        print(bst)
+        result = inorder_traversal(bst.root)
+        print(result)
+        tree_set.add(result)
+
+    size = len(tree_set)
+    return size
+
+
+if __name__ == "__main__":
+    result = main()
+    print(result)
