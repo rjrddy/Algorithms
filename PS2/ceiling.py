@@ -21,13 +21,13 @@ def add(root, val):
 
 
 def inorder_traversal(root):
-
     result = ''
     if root is not None:
         left_traversal = inorder_traversal(root.left)
-        result = left_traversal + '1'
+        result += 'L' + left_traversal
+        result += 'root'
         right_traversal = inorder_traversal(root.right)
-        result += right_traversal
+        result += 'R' + right_traversal
     return result
 
 
@@ -43,9 +43,7 @@ def main():
         for val in vals:
             bst.root = add(bst.root, val)
 
-        print(bst)
         result = inorder_traversal(bst.root)
-        print(result)
         tree_set.add(result)
 
     size = len(tree_set)
