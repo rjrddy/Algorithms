@@ -3,8 +3,6 @@
 ''' 
 defines Node class with left, right, and value properties
 '''
-
-
 class Node:
     def __init__(self, val):
         self.left = None
@@ -16,8 +14,6 @@ class Node:
 defines Binary Search Tree class
 sets the root to null value at first
 '''
-
-
 class BST:
     def __init__(self):
         self.root = None
@@ -26,8 +22,6 @@ class BST:
 '''
 add method for a Binary Search Tree with value as a parameter
 '''
-
-
 def add(root, val):
 
     # creates a node at root
@@ -50,8 +44,6 @@ in-order traversal for a Binary Search Tree
 takes in a root as its only parameter
 returns an a string representation of a left, right, or root traversal
 '''
-
-
 def inorder_traversal(root):
     result = ''
     if root is not None:
@@ -70,8 +62,6 @@ def inorder_traversal(root):
 '''
 main method for the implementation to check for the total number of matching outputs
 '''
-
-
 def main():
 
     # splits first line of input into 2 respective integer values, n and k
